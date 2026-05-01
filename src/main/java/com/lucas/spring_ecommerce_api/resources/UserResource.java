@@ -1,5 +1,4 @@
 package com.lucas.spring_ecommerce_api.resources;
-
 import com.lucas.spring_ecommerce_api.entities.User;
 import com.lucas.spring_ecommerce_api.services.UserService;
 import org.springframework.http.ResponseEntity;

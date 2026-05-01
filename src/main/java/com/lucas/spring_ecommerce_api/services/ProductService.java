@@ -1,11 +1,9 @@
 package com.lucas.spring_ecommerce_api.services;
-
 import com.lucas.spring_ecommerce_api.entities.Product;
 import com.lucas.spring_ecommerce_api.repository.ProductRepository;
 import com.lucas.spring_ecommerce_api.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

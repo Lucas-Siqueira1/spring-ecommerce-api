@@ -1,37 +1,40 @@
 package com.lucas.spring_ecommerce_api.resources;
-import com.lucas.spring_ecommerce_api.entities.Product;
-import com.lucas.spring_ecommerce_api.services.ProductService;
+
+
+import com.lucas.spring_ecommerce_api.entities.Order;
+import com.lucas.spring_ecommerce_api.services.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/products")
-public class ProductResources {
+@RequestMapping(value = "/orders")
+public class OrderResources {
 
-    private final ProductService productService;
+    private final OrderService orderService;
 
-    public ProductResources(ProductService productService) {
-        this.productService = productService;
+    public OrderResources(OrderService orderService) {
+        this.orderService = orderService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> findAllProducts() {
-        List<Product> obj = productService.findAllProducts();
+    public ResponseEntity<List<Order>> findAllOrders() {
+        List<Order> obj = orderService.findAllOrders();
         return ResponseEntity.ok().body(obj);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Product> findUserById(@PathVariable Integer id) {
-        Product obj = productService.findProductById(id);
+    public ResponseEntity<Order> findOrderById(@PathVariable Integer id) {
+        Order obj = orderService.findOrderById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public ResponseEntity<Product> insert(@RequestBody Product obj) {
-        obj = productService.insert(obj);
+    public ResponseEntity<Order> insert(@RequestBody Order obj) {
+        obj = orderService.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(obj.getId())
@@ -41,13 +44,14 @@ public class ProductResources {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        productService.delete(id);
+        orderService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Product> update(@PathVariable Integer id, @RequestBody Product newProduct) {
-        Product obj = productService.update(id, newProduct);
+    public ResponseEntity<Order> update(@PathVariable Integer id, @RequestBody Order newOrder) {
+        Order obj = orderService.update(id, newOrder);
         return ResponseEntity.ok().body(obj);
     }
+
 }
